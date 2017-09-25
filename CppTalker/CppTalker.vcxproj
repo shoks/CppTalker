@@ -111,6 +111,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SQLGenerator.cpp" />
+    <ClCompile Include="SQLPrepare.cpp" />
+    <ClCompile Include="SQLShema.cpp" />
+    <ClCompile Include="SQLTalker.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SQLGenerator.h" />
+    <ClInclude Include="SQLPrepare.h" />
+    <ClInclude Include="SQLShema.h" />
+    <ClInclude Include="SQLTalker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
