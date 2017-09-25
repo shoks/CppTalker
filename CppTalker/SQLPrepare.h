@@ -35,9 +35,9 @@ public:
 
 
 private:
-	InsertMap* insertRequests = nullptr;
-	std::list<SQLUpdateBag*> updateRequests;
-	std::list<int*> deleteRequests;
+	InsertMap* preparedInserts = nullptr;
+	std::list<SQLUpdateBag*> preparedUpdates;
+	std::list<int*> preparatedDeletes;
 
 protected:
 

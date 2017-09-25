@@ -4,7 +4,7 @@
 
 SQLPrepare::SQLPrepare()
 {
-	insertRequests = new InsertMap();
+	preparedInserts = new InsertMap();
 }
 
 SQLPrepare* SQLPrepare::Add(const std::string& _key, const std::string& _value)
@@ -20,7 +20,7 @@ SQLPrepare* SQLPrepare::Add(const std::string& _key, const std::string& _value)
 		std::cerr << e.what();
 	}
 
-	insertRequests->insert(_key, _value);
+	preparedInserts->insert(_key, _value);
 
 	return this;
 }
@@ -43,7 +43,7 @@ SQLPrepare* SQLPrepare::Update(const int& _PK, InsertMap* _fields)
 {
 	SQLUpdateBag* updatePack = new SQLUpdateBag(_PK, _fields);
 
-	updateRequests.push_back(updatePack);
+	preparedUpdates.push_back(updatePack);
 
 	return this;
 }
@@ -61,7 +61,7 @@ SQLPrepare* SQLPrepare::Update(const std::map<int, InsertMap*>& _fields)
 
 SQLPrepare* SQLPrepare::Delete(const int& _PK)
 {
-	deleteRequests.push_back(new int(_PK));
+	preparatedDeletes.push_back(new int(_PK));
 
 	return this;
 }
@@ -70,7 +70,7 @@ SQLPrepare* SQLPrepare::Delete(const std::list<int>& _PKs)
 {
 	for (auto it = _PKs.begin(); _PKs.end() != it; ++it)
 	{
-		deleteRequests.push_back(new int(*it));
+		preparatedDeletes.push_back(new int(*it));
 	}
 
 	return this;
@@ -78,30 +78,30 @@ SQLPrepare* SQLPrepare::Delete(const std::list<int>& _PKs)
 
 bool SQLPrepare::HasAnyInsert() const
 {
-	if (insertRequests->size() > 0)
+	if (preparedInserts->size() > 0)
 		return true;
 	return false;
 }
 
 bool SQLPrepare::HasAnyUpdate() const
 {
-	if (updateRequests.size() > 0)
+	if (preparedUpdates.size() > 0)
 		return true;
 	return false;
 }
 
 bool SQLPrepare::HasAnyDelete() const
 {
-	if (deleteRequests.size() > 0)
+	if (preparatedDeletes.size() > 0)
 		return true;
 	return false;
 }
 
 void SQLPrepare::Clear()
 {
-	insertRequests->clear();
-	updateRequests.remove_if(deleter<SQLUpdateBag*>);
-	deleteRequests.remove_if(deleter<SQLUpdateBag*>);
+	preparedInserts->clear();
+	preparedUpdates.remove_if(deleter<SQLUpdateBag*>);
+	preparatedDeletes.remove_if(deleter<SQLUpdateBag*>);
 
 	//while (!updateRequests.empty()) delete updateRequests.front(), updateRequests.pop_front();
 	//while (!deleteRequests.empty()) delete deleteRequests.front(), deleteRequests.pop_front();
@@ -123,7 +123,7 @@ bool SQLPrepare::Clear(SQLPrepare& _preparation)
 
 InsertMap* SQLPrepare::GetInsertRequest() const
 {
-	return insertRequests;
+	return preparedInserts;
 }
 
 std::string SQLPrepare::GetTableName() const

@@ -1,7 +1,7 @@
-#include "SQLShema.h"
+#include "SQLSchema.h"
 
 
-SQLShema::~SQLShema()
+SQLSchema::~SQLSchema()
 {
 }
 

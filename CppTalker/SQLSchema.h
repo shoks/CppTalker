@@ -49,9 +49,9 @@ struct TableField
 	bool isNull = false;
 };
 
-class SQLShema: public TableDirector
+class SQLSchema: public TableDirector
 {
 public:
-	SQLShema();
-	~SQLShema();
+	SQLSchema();
+	~SQLSchema();
 };
