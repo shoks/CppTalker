@@ -7,6 +7,10 @@ public:
 	ExampleModel();
 	~ExampleModel();
 
+
 	void Migration();
+private:
+
+	std::list<std::string> fields = {"id", "name"};
 };
 
