@@ -11,18 +11,6 @@ SQLTalker::SQLTalker(const std::string& DBNAME)
 }
 
 
-
-SQLTalker * SQLTalker::GetDB()
-{
-	if (!instance)
-	{
-
-		instance = new SQLTalker(DBNAME);
-	}
-	return instance;
-}
-
-
 SQLPrepare* SQLTalker::Prepare()
 {
 	return new SQLPrepare;

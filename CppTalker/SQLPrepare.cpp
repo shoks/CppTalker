@@ -42,7 +42,6 @@ SQLPrepare* SQLPrepare::Add(const std::string& key, const double& value)
 SQLPrepare* SQLPrepare::Update(const int& _PK, InsertMap* _fields)
 {
 	SQLUpdateBag* updatePack = new SQLUpdateBag(_PK, _fields);
-
 	preparedUpdates.push_back(updatePack);
 
 	return this;
@@ -80,6 +79,7 @@ bool SQLPrepare::HasAnyInsert() const
 {
 	if (preparedInserts->size() > 0)
 		return true;
+
 	return false;
 }
 
@@ -87,6 +87,7 @@ bool SQLPrepare::HasAnyUpdate() const
 {
 	if (preparedUpdates.size() > 0)
 		return true;
+
 	return false;
 }
 
@@ -94,6 +95,7 @@ bool SQLPrepare::HasAnyDelete() const
 {
 	if (preparatedDeletes.size() > 0)
 		return true;
+
 	return false;
 }
 
@@ -111,6 +113,7 @@ bool SQLPrepare::IsClean() const
 {
 	if (HasAnyInsert() && HasAnyUpdate() && HasAnyDelete())
 		return true;
+
 	return false;
 }
 
@@ -142,7 +145,7 @@ void SQLPrepare::setAccessibleFields(const std::vector<std::string>& _fields)
 	fields.assign(_fields.begin(), _fields.end());
 }
 
-SQLUpdateBag::SQLUpdateBag(int _PK, InsertMap* _fields)
+SQLUpdateBag::SQLUpdateBag(int _PK, InsertMap* _fields): count(0)
 {
 	primaryKey = _PK;
 	updateFields.insert(_fields->begin(), _fields->end());

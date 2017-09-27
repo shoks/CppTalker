@@ -111,6 +111,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MYSQLWrapper.cpp" />
+    <ClCompile Include="SQLConnector.cpp" />
     <ClCompile Include="SQLGenerator.cpp" />
     <ClCompile Include="SQLPrepare.cpp" />
     <ClCompile Include="SQLRequest.cpp" />
@@ -118,11 +120,14 @@
     <ClCompile Include="SQLTalker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MYSQLWrapper.h" />
+    <ClInclude Include="SQLConnector.h" />
     <ClInclude Include="SQLGenerator.h" />
     <ClInclude Include="SQLPrepare.h" />
     <ClInclude Include="SQLRequest.h" />
     <ClInclude Include="SQLSchema.h" />
     <ClInclude Include="SQLTalker.h" />
+    <ClInclude Include="SQLWrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
