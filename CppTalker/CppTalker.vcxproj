@@ -111,18 +111,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExampleModel.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MYSQLWrapper.cpp" />
+    <ClCompile Include="PGSQLWrapper.cpp" />
     <ClCompile Include="SQLConnector.cpp" />
     <ClCompile Include="SQLGenerator.cpp" />
+    <ClCompile Include="SQLiteWrapper.cpp" />
     <ClCompile Include="SQLPrepare.cpp" />
     <ClCompile Include="SQLRequest.cpp" />
     <ClCompile Include="SQLSchema.cpp" />
     <ClCompile Include="SQLTalker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExampleModel.h" />
     <ClInclude Include="MYSQLWrapper.h" />
+    <ClInclude Include="PGSQLWrapper.h" />
     <ClInclude Include="SQLConnector.h" />
     <ClInclude Include="SQLGenerator.h" />
+    <ClInclude Include="SQLiteWrapper.h" />
     <ClInclude Include="SQLPrepare.h" />
     <ClInclude Include="SQLRequest.h" />
     <ClInclude Include="SQLSchema.h" />

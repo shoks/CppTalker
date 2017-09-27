@@ -155,3 +155,4 @@ int SQLUpdateBag::size() const
 {
 	return count;
 }
+

@@ -6,6 +6,8 @@
 #include <vector>
 #include<map>
 #include "SQLPrepare.h"
+#include "SQLConnector.h"
+#include "SQLSchema.h"
 
 typedef std::map<std::string, std::string>  InsertMap;
 
@@ -13,14 +15,15 @@ struct SQLUpdateBag;
 class SQLTalker;
 
 
-class SQLTalker: public SQLPrepare
+class SQLTalker: public SQLPrepare, public SQLConnector, public SQLSchema
 {
 public:
-	~SQLTalker();
+	~SQLTalker() = 0;
 	static  SQLPrepare* Prepare();
 
-private:
-	explicit SQLTalker(const std::string& dbname);
-	static std::string DBNAME;
+protected:
+	SQLTalker();
+	virtual void Migrations() = 0;
+
 
 };

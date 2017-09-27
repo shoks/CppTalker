@@ -64,3 +64,4 @@ std::string SQLGenerator::InsertFormatter(std::pair<std::list<std::string>, std:
 	return sstream.str();
 }
 
+
