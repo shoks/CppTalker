@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppTalker", "CppTalker\CppTalker.vcxproj", "{922B2519-A124-4AED-8565-A8BA67169252}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Example", "Example\Example.vcxproj", "{330FBDB0-B1BF-4DFB-9788-03FE58167675}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{922B2519-A124-4AED-8565-A8BA67169252}.Release|x64.Build.0 = Release|x64
 		{922B2519-A124-4AED-8565-A8BA67169252}.Release|x86.ActiveCfg = Release|Win32
 		{922B2519-A124-4AED-8565-A8BA67169252}.Release|x86.Build.0 = Release|Win32
+		{330FBDB0-B1BF-4DFB-9788-03FE58167675}.Debug|x64.ActiveCfg = Debug|x64
+		{330FBDB0-B1BF-4DFB-9788-03FE58167675}.Debug|x64.Build.0 = Debug|x64
+		{330FBDB0-B1BF-4DFB-9788-03FE58167675}.Debug|x86.ActiveCfg = Debug|Win32
+		{330FBDB0-B1BF-4DFB-9788-03FE58167675}.Debug|x86.Build.0 = Debug|Win32
+		{330FBDB0-B1BF-4DFB-9788-03FE58167675}.Release|x64.ActiveCfg = Release|x64
+		{330FBDB0-B1BF-4DFB-9788-03FE58167675}.Release|x64.Build.0 = Release|x64
+		{330FBDB0-B1BF-4DFB-9788-03FE58167675}.Release|x86.ActiveCfg = Release|Win32
+		{330FBDB0-B1BF-4DFB-9788-03FE58167675}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

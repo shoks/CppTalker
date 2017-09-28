@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{922B2519-A124-4AED-8565-A8BA67169252}</ProjectGuid>
-    <RootNamespace>CppTalker</RootNamespace>
+    <ProjectGuid>{330FBDB0-B1BF-4DFB-9788-03FE58167675}</ProjectGuid>
+    <RootNamespace>Example</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,18 +70,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-    </ClCompile>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\AppProjects\CppTalker;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\AppProjects\CppTalker;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,6 +93,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\AppProjects\CppTalker;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -104,6 +107,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\AppProjects\CppTalker;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -111,30 +115,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MYSQLWrapper.cpp" />
-    <ClCompile Include="PGSQLWrapper.cpp" />
-    <ClCompile Include="SQLConnector.cpp" />
-    <ClCompile Include="SQLGenerator.cpp" />
-    <ClCompile Include="SQLiteWrapper.cpp" />
-    <ClCompile Include="SQLModel.cpp" />
-    <ClCompile Include="SQLPrepare.cpp" />
-    <ClCompile Include="SQLRequest.cpp" />
-    <ClCompile Include="SQLSchema.cpp" />
-    <ClCompile Include="SQLTalker.cpp" />
+    <ClCompile Include="..\CppTalker\ExampleModel.cpp" />
+    <ClCompile Include="..\CppTalker\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MYSQLWrapper.h" />
-    <ClInclude Include="PGSQLWrapper.h" />
-    <ClInclude Include="SQLConnector.h" />
-    <ClInclude Include="SQLExceptions.h" />
-    <ClInclude Include="SQLGenerator.h" />
-    <ClInclude Include="SQLiteWrapper.h" />
-    <ClInclude Include="SQLModel.h" />
-    <ClInclude Include="SQLPrepare.h" />
-    <ClInclude Include="SQLRequest.h" />
-    <ClInclude Include="SQLSchema.h" />
-    <ClInclude Include="SQLTalker.h" />
-    <ClInclude Include="SQLWrapper.h" />
+    <ClInclude Include="..\CppTalker\ExampleModel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

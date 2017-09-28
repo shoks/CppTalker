@@ -6,17 +6,18 @@
 #include <vector>
 #include<map>
 
+
+
 typedef std::map<std::string, std::string>  InsertMap;
 
 struct SQLUpdateBag;
 
-class SQLPrepare
-{
-public:
-
 	template<typename  T>
 	static bool deleter(T element) { delete element; return true; }
 
+class SQLPrepare
+{
+public:
 	SQLPrepare* Add(const std::string& _key, const std::string& value);
 	SQLPrepare* Add(const std::string& _key, const int& _value);
 	SQLPrepare* Add(const std::string& _key, const double& _value);
@@ -33,24 +34,23 @@ public:
 	InsertMap* GetInsertRequest() const;
 	std::string GetTableName() const;
 
-
 private:
 	InsertMap* preparedInserts = nullptr;
 	std::list<SQLUpdateBag*> preparedUpdates;
 	std::list<int*> preparatedDeletes;
 
 protected:
-
 	SQLPrepare();
-	void setAccessibleFields(const std::string& _field);
-	void setAccessibleFields(const std::vector<std::string>& _fields);
-	std::string table;
+	void SetAccessibleFields(const std::string& _field);
+	void SetAccessibleFields(const std::vector<std::string>& _fields);
+	void SetTableName(const std::string& _tableName);
+	void SetPrimaryKey(const std::string& _PrimaryKey);
 	std::list<std::string> fields;
+	std::string table;
 	std::string primaryKeys = "id";
 
 	friend class SQLTalker;
 };
-
 
 struct SQLUpdateBag
 {

@@ -134,15 +134,25 @@ std::string SQLPrepare::GetTableName() const
 	return table;
 }
 
-void SQLPrepare::setAccessibleFields(const std::string& _field)
+void SQLPrepare::SetAccessibleFields(const std::string& _field)
 {
 	fields.push_back(_field);
 }
 
-void SQLPrepare::setAccessibleFields(const std::vector<std::string>& _fields)
+void SQLPrepare::SetAccessibleFields(const std::vector<std::string>& _fields)
 {
 	fields.sort();
 	fields.assign(_fields.begin(), _fields.end());
+}
+
+void SQLPrepare::SetTableName(const std::string& _tableName)
+{
+	table = _tableName;
+}
+
+void SQLPrepare::SetPrimaryKey(const std::string& _PrimaryKey)
+{
+	primaryKeys = _PrimaryKey;
 }
 
 SQLUpdateBag::SQLUpdateBag(int _PK, InsertMap* _fields): count(0)

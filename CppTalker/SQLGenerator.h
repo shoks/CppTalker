@@ -1,9 +1,7 @@
 #pragma once
-#include <string>
 #include <map>
 #include "SQLTalker.h"
-#include <iostream>
-#include <sstream>  
+
 
 typedef std::map<std::string, std::string>  InsertMap;
 

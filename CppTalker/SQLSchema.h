@@ -16,9 +16,9 @@ enum FieldType
 	TIMESTAMP
 };
 
+
 struct TableField
 {
-
 	static std::string ProcessType(const FieldType& _type);
 	TableDirector* parentTable;
 	bool isPrimary = false;
@@ -29,9 +29,9 @@ struct TableField
 	bool isNull = false;
 };
 
+
 class TableDirector
 {
-
 protected:
 	virtual ~TableDirector();
 	explicit TableDirector(std::string _name);
@@ -44,15 +44,15 @@ protected:
 	std::list<TableField> childFields;
 	std::string name;
 	bool defaultTimeFields = true;
-private:
+	//random value of migration version to change manually after each new update
+	int migrationVersion;
+
 
 	TableDirector();
-
 };
 
 
-
-class SQLSchema: public TableDirector
+class SQLSchema: protected TableDirector
 {
 public:
 	SQLSchema();

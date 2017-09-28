@@ -1,5 +1,6 @@
 #include "SQLGenerator.h"
-
+#include <sstream>  
+#include <string>
 
 
 SQLGenerator::SQLGenerator(SQLPrepare& _prepared) : prepared(_prepared)
@@ -60,6 +61,7 @@ std::string SQLGenerator::InsertFormatter(std::pair<std::list<std::string>, std:
 		if (values.end() != ++it)
 			sstream << ", ";
 	}
+
 	sstream << " );";
 	return sstream.str();
 }

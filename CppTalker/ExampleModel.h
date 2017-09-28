@@ -1,16 +1,13 @@
 #pragma once
-#include "SQLTalker.h"
+#include "SQLModel.h"
+
 class ExampleModel :
-	public SQLTalker
+	public SQLModel
 {
 public:
 	ExampleModel();
 	~ExampleModel();
+	void Migration() override;
 
-
-	void Migration();
-private:
-
-	std::list<std::string> fields = {"id", "name"};
 };
 
