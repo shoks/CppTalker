@@ -12,7 +12,7 @@ typedef std::map<std::string, std::string>  InsertMap;
 
 struct SQLUpdateBag;
 
-	template<typename  T>
+	template<typename T>
 	static bool deleter(T element) { delete element; return true; }
 
 class SQLPrepare
