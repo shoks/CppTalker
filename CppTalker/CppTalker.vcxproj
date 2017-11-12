@@ -118,6 +118,7 @@
     <ClCompile Include="SQLiteWrapper.cpp" />
     <ClCompile Include="SQLModel.cpp" />
     <ClCompile Include="SQLPrepare.cpp" />
+    <ClCompile Include="SQLRelation.cpp" />
     <ClCompile Include="SQLRequest.cpp" />
     <ClCompile Include="SQLSchema.cpp" />
     <ClCompile Include="SQLTalker.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="SQLiteWrapper.h" />
     <ClInclude Include="SQLModel.h" />
     <ClInclude Include="SQLPrepare.h" />
+    <ClInclude Include="SQLRelation.h" />
     <ClInclude Include="SQLRequest.h" />
     <ClInclude Include="SQLSchema.h" />
     <ClInclude Include="SQLTalker.h" />

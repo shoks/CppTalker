@@ -12,6 +12,7 @@ public:
 	explicit SQLGenerator(SQLPrepare& _prepared);
 	~SQLGenerator();
 	bool ProcessRequests(SQLPrepare& _prepared);
+	std::string Clause();
 
 private:
 	void Start();

@@ -10,7 +10,9 @@
 #include <memory>
 #include "MYSQLWrapper.h"
 #include "PGSQLWrapper.h"
+#include <mutex>
 
+class MSQLWrapper;
 class SQLConnector
 {
 	enum Config
@@ -33,7 +35,8 @@ class SQLConnector
 
 public:
 
-
+	std::mutex con_mutex;
+	std::once_flag con_flag;
 	static SQLConnector* instance;
 	static SQLConnector* Get(const DBServer& _serverType, ...);
 	static SQLConnector* Get();
@@ -45,7 +48,7 @@ private:
 
 	void CallServer();
 	bool ConnectTo();
-
+	SQLConnector();
 	SQLWrapper* wrapper = nullptr;
 	DBServer serverType = NOSRV;
 	std::string ipAddress = "";
@@ -54,8 +57,8 @@ private:
 	std::pair<std::string, std::string> credential = {"", ""};
 	bool alive = false;
 protected:
-	SQLConnector();
-	SQLConnector(const DBServer& _serverType);
+
+	explicit SQLConnector(const DBServer& _serverType);
 	SQLConnector(const DBServer& _serverType, const std::string& dbName);
 	SQLConnector(const DBServer& _serverType, const std::string& _ipAddress, const std::_Uint8_t& _port, const std::string& _dbName);
 	SQLConnector(const DBServer& _serverType, const std::string& _ipAddress, const std::_Uint8_t& _port, const std::string& _dbName, const std::pair<std::string, std::string>& _credentials);

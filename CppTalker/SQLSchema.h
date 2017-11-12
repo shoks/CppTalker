@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <functional>
 
 
 struct TableField;
@@ -16,7 +17,7 @@ enum FieldType
 	TIMESTAMP
 };
 
-
+class SQLPivot;
 struct TableField
 {
 	static std::string ProcessType(const FieldType& _type);
@@ -39,6 +40,8 @@ protected:
 	TableDirector* AddColumn(const std::string& _name, const FieldType& _type, const bool& _isPrimaryKey, const bool& _isAuto);
 	TableDirector* AddColumn(const std::string& _name, const FieldType& _type, const int& _max = 255, const bool& _isNull = false);
 	TableDirector* AddColumn(const std::string& _name, const FieldType& _type, const bool& _isNull = false);
+	TableDirector* CreatePivotTable(std::function<void(SQLPivot)> _piv);
+
 	//TableDirector* AddColumn(const std::string& _name, const FieldType& _type);
 	bool primaryKeyLock = false;
 	std::list<TableField> childFields;

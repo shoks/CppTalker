@@ -1,5 +1,6 @@
 #include "SQLConnector.h"
-
+#include <iostream>
+#include "SQLExceptions.h"
 
 
 SQLConnector::SQLConnector()
@@ -30,7 +31,12 @@ SQLConnector::SQLConnector(const DBServer& _serverType, const std::string& _ipAd
 
 
 SQLConnector::~SQLConnector()
-{
+{	
+	if(wrapper != nullptr)
+		delete wrapper;
+
+	if(instance != nullptr)
+		delete instance;
 }
 
 //HACK trying vriable parameter
@@ -65,43 +71,68 @@ bool SQLConnector::IsAlive() const
 
 void SQLConnector::CallServer()
 {
-
 	switch (serverType)
 	{
 	case SQLITE:
-		wrapper = new SQLiteWrapper();
+		wrapper = dynamic_cast<SQLiteWrapper*>(wrapper);
 		if (ConnectTo())
-			throw(std::exception("Can't connect to SQLite Database!"));		
+			throw(std::exception("Can't connect to SQLite Database!"));
 		break;
 	case MYSQL:
-		wrapper = new MYSQLWrapper();
+		wrapper = dynamic_cast<MYSQLWrapper*>(wrapper);
 		if (ConnectTo())
 			throw(std::exception("Can't connect to MySQL Database!"));
 		break;
 	case PGSQL:
-		wrapper = new PGSQLWrapper();
+		wrapper = dynamic_cast<PGSQLWrapper*>(wrapper);
 		if (ConnectTo())
 			throw(std::exception("Can't connect to PostegreSQL Database!"));
 		break;
-	case MSQL: break;
-	case NOSRV: break;	
+		//case MSQL: 
+		//	wrapper = dynamic_cast<MSQLWrapper*>(wrapper);
+		//	if (ConnectTo())
+		//		throw(std::exception("Can't connect to PostegreSQL Database!"));
+		//	break; 
+	case NOSRV: break;
 	default: ;
-	}	
+	}
 }
+
 
 bool SQLConnector::ConnectTo()
 {
+	std::lock_guard<std::mutex> con_locker(con_mutex);
+
 	if (!IsAlive() && serverType != NOSRV && serverType == SQLITE && dbName != "")
 	{
-		if (wrapper->Connect(dbName))
-			return alive = true;		 
+		/*		if (wrapper->Connect(dbName))	*/
+		try
+		{
+			std::call_once(con_flag, wrapper->Connect(dbName), this);
+
+		}
+		catch (const SQLConnectionException& e)
+		{
+			std::cerr << e.what();
+		}
+
+		return alive = true;
 	}
 	else if (!IsAlive() && serverType != NOSRV && serverType != SQLITE && ipAddress != "" && port > 0 && dbName != "" && credential.first != "")
 	{
-		if (wrapper->Connect(ipAddress, port, dbName, credential))
+		//if (wrapper->Connect(ipAddress, port, dbName, credential))
+		//{
+		//}
+		try
 		{
-			return alive = true;			
+			std::call_once(con_flag, wrapper->Connect(ipAddress, port, dbName, credential), this);
 		}
+		catch (const SQLConnectionException& e)
+		{
+			std::cerr << e.what();
+		}
+		return alive = true;
 	}
+
 	return alive = false;
 }

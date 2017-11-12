@@ -1,6 +1,5 @@
 #pragma once
-//#include<SQLiteCpp/Database.h>
-//#include <SQLiteCpp/Statement.h>
+
 #include <list>
 #include <algorithm>
 #include <vector>
@@ -36,8 +35,8 @@ public:
 
 private:
 	InsertMap* preparedInserts = nullptr;
-	std::list<SQLUpdateBag*> preparedUpdates;
-	std::list<int*> preparatedDeletes;
+	std::vector<SQLUpdateBag*> preparedUpdates;
+	std::vector<int*> preparatedDeletes;
 
 protected:
 	SQLPrepare();
@@ -45,7 +44,7 @@ protected:
 	void SetAccessibleFields(const std::vector<std::string>& _fields);
 	void SetTableName(const std::string& _tableName);
 	void SetPrimaryKey(const std::string& _PrimaryKey);
-	std::list<std::string> fields;
+	std::vector<std::string> fields;
 	std::string table;
 	std::string primaryKeys = "id";
 

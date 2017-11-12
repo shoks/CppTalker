@@ -3,6 +3,7 @@
 #include "SQLPrepare.h"
 #include "SQLConnector.h"
 #include "SQLSchema.h"
+#include "SQLConnector.h"
 
 
 class SQLModel;

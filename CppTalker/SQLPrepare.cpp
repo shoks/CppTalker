@@ -1,6 +1,7 @@
 #include "SQLPrepare.h"
 #include <iostream>
 #include <string>
+#include "SQLExceptions.h"
 
 SQLPrepare::SQLPrepare()
 {
@@ -13,9 +14,9 @@ SQLPrepare* SQLPrepare::Add(const std::string& _key, const std::string& _value)
 	{
 		auto found = (std::find(fields.begin(), fields.end(), _key) != fields.end());
 		if (!found)
-			throw std::exception("Add parameter assertion error!");
+			throw SQLRequestPreparationException();
 	}
-	catch (const std::exception& e)
+	catch (const SQLRequestPreparationException& e)
 	{
 		std::cerr << e.what();
 	}
@@ -102,8 +103,13 @@ bool SQLPrepare::HasAnyDelete() const
 void SQLPrepare::Clear()
 {
 	preparedInserts->clear();
-	preparedUpdates.remove_if(deleter<SQLUpdateBag*>);
-	preparatedDeletes.remove_if(deleter<SQLUpdateBag*>);
+	//preparedUpdates.remove_if(deleter<SQLUpdateBag*>);
+	preparedUpdates.erase(
+		std::remove_if(preparedUpdates.begin(), preparedUpdates.end(), deleter<SQLUpdateBag*>),
+		preparedUpdates.end());
+	preparatedDeletes.erase(
+		std::remove_if(preparatedDeletes.begin(), preparatedDeletes.end(), deleter<int*>),
+		preparatedDeletes.end());
 
 	//while (!updateRequests.empty()) delete updateRequests.front(), updateRequests.pop_front();
 	//while (!deleteRequests.empty()) delete deleteRequests.front(), deleteRequests.pop_front();
@@ -141,7 +147,7 @@ void SQLPrepare::SetAccessibleFields(const std::string& _field)
 
 void SQLPrepare::SetAccessibleFields(const std::vector<std::string>& _fields)
 {
-	fields.sort();
+	std::sort(fields.begin(), fields.end());
 	fields.assign(_fields.begin(), _fields.end());
 }
 

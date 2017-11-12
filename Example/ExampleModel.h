@@ -1,5 +1,5 @@
 #pragma once
-#include "SQLModel.h"
+#include "CppTalker/SQLModel.h"
 
 class ExampleModel :
 	public SQLModel

@@ -21,4 +21,8 @@ class SQLMigrationTableNotExistException: public std::exception
 {
 	const char* _Message = "SQL migration table don't exist!";
 };
+class SQLRequestPreparationException: public std::exception
+{
+	const char* _Message = "SQL preeparation error!";
+};
 
